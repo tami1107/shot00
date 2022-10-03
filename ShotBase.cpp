@@ -32,7 +32,6 @@ void ShotBase::start(Vec2 pos)
 void ShotBase::update()
 {
 	if (!m_isExist) return;
-	
 }
 // •\Ž¦
 void ShotBase::draw()
