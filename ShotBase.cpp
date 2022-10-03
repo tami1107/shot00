@@ -15,6 +15,7 @@ ShotBase::ShotBase()
 	m_vec.x = 0.0f;
 	m_vec.y = 0.0f;
 
+
 	m_isExist = false;
 }
 
@@ -37,5 +38,5 @@ void ShotBase::update()
 void ShotBase::draw()
 {
 	if (!m_isExist) return;
-	DrawGraphF(m_pos.x, m_pos.y, m_handle, true);
+	DrawGraphF(m_pos.x, m_pos.y+40.0f, m_handle, true);
 }

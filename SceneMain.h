@@ -2,6 +2,9 @@
 
 #include "player.h"
 #include "ShotNormal.h"
+#include "ShotParabolay.h"
+#include "ShotDelay.h"
+
 
 class SceneMain
 {
@@ -34,6 +37,7 @@ private:
 	// プレイヤー
 	Player m_player;
 	// ショット
-	ShotNormal m_shot[kShotMax];
-
+	//ShotNormal m_shot[kShotMax];
+	//ShotParabolay m_shot[kShotMax];
+	ShotDelay m_shot[kShotMax];
 };
