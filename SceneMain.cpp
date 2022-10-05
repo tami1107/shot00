@@ -1,5 +1,10 @@
 #include "DxLib.h"
 #include "SceneMain.h"
+#include "ShotNormal.h"
+#include "ShotParabolay.h"
+#include "ShotDelay.h"
+#include "ShotSin.h"
+#include "ShotBound.h"
 
 namespace
 {

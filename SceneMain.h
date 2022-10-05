@@ -38,5 +38,4 @@ private:
 	Player m_player;
 	// ƒVƒ‡ƒbƒg
 	ShotBase* m_pShot[kShotMax];
-
 };
