@@ -1,11 +1,8 @@
 #pragma once
 
 #include "player.h"
-#include "ShotNormal.h"
-#include "ShotParabolay.h"
-#include "ShotDelay.h"
-#include "ShotSin.h"
-#include "ShotBound.h"
+#include "ShotBase.h"
+
 
 class SceneMain
 {
@@ -40,14 +37,6 @@ private:
 	// プレイヤー
 	Player m_player;
 	// ショット
-//	ShotBase* m_Shot[kShotMax];
+	ShotBase* m_pShot[kShotMax];
 
-	ShotNormal* m_pShotNormal[kShotMax];
-	ShotParabolay* m_pShotParabolay[kShotMax];
-	ShotDelay* m_pShotDelay[kShotMax];
-
-
-
-//	ShotSin m_shot[kShotMax];
-//	ShotBound m_shot[kShotMax];
 };
