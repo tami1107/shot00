@@ -22,6 +22,10 @@ public:
 protected:
 	// グラフィックハンドル
 	int m_handle;
+	// ショットを打ち出して止まるまでの時間
+	int m_waitFrame;
+	// 停止したショットを再度打ち出すまでの時間
+	int m_delayTime;
 	// 表示位置
 	Vec2	m_pos;
 	// 移動

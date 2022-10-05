@@ -19,5 +19,6 @@ void ShotNormal::update()
 {
 	if (!m_isExist) return;
 	m_pos += m_vec;
+	//if(m_pos)
 }
 
