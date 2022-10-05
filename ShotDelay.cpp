@@ -10,7 +10,7 @@ namespace
 	// 停止したショットを再度打ち出すまでの時間
 	constexpr int kWaitFrame = 30;
 	// 再度打ち出されたショットの速度
-	constexpr float kShotAcceleration = 12.0f;
+	constexpr float kShotAcceleration = 20.0f;
 }
 
 

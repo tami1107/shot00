@@ -27,9 +27,17 @@ void SceneMain::init()
 	m_player.init();
 	m_player.setMain(this);
 
-	for (auto& shot : m_shot)
+	for (auto& shot : m_pShotNormal)
 	{
-		shot.setHandle(m_hShotGraphic);
+		shot = nullptr;
+	}
+	for (auto& shot : m_pShotParabolay)
+	{
+		shot = nullptr;
+	}
+	for (auto& shot : m_pShotDelay)
+	{
+		shot = nullptr;
 	}
 }
 
@@ -38,15 +46,60 @@ void SceneMain::end()
 {
 	DeleteGraph(m_hPlayerGraphic);
 	DeleteGraph(m_hShotGraphic);
+
+	for (auto& shot : m_pShotNormal)
+	{
+		if (!shot) continue;
+		delete shot;
+		shot = nullptr;
+	}
+	for (auto& shot : m_pShotParabolay)
+	{
+		if (!shot) continue;
+		delete shot;
+		shot = nullptr;
+	}
+	for (auto& shot : m_pShotDelay)
+	{
+		if (!shot) continue;
+		delete shot;
+		shot = nullptr;
+	}
 }
 
 // 毎フレームの処理
 void SceneMain::update()
 {
 	m_player.update();
-	for (auto& shot : m_shot)
+	for (auto& shot : m_pShotNormal)
 	{
-		shot.update();
+		if (!shot) continue;
+		shot->update();
+		if (!shot->isExist())
+		{
+			delete shot;
+			shot = nullptr;
+		}
+	}
+	for (auto& shot : m_pShotParabolay)
+	{
+		if (!shot) continue;
+		shot->update();
+		if (!shot->isExist())
+		{
+			delete shot;
+			shot = nullptr;
+		}
+	}
+	for (auto& shot : m_pShotDelay)
+	{
+		if (!shot) continue;
+		shot->update();
+		if (!shot->isExist())
+		{
+			delete shot;
+			shot = nullptr;
+		}
 	}
 }
 
@@ -54,28 +107,85 @@ void SceneMain::update()
 void SceneMain::draw()
 {
 	m_player.draw();
-
-	for (auto& shot : m_shot)
+	for (auto& shot : m_pShotNormal)
 	{
-		shot.draw();
+		if (!shot) continue;
+		shot->draw();
 	}
-
+	for (auto& shot : m_pShotParabolay)
+	{
+		if (!shot) continue;
+		shot->draw();
+	}
+	for (auto& shot : m_pShotDelay)
+	{
+		if (!shot) continue;
+		shot->draw();
+	}
+	
 	// 現在存在している弾の数を表示
 	int shotNum = 0;
-	for (auto& shot : m_shot)
+	for (auto& shot : m_pShotNormal)
 	{
-		if (shot.isExist()) shotNum++;
+		if (!shot) continue;
+		if (shot->isExist())	shotNum++;
 	}
-	DrawFormatString(0, 0, GetColor(255, 255, 255), "弾の数：%d", shotNum);
+	DrawFormatString(0, 0, GetColor(255, 255, 255), "Normal：%d", shotNum);
+
+	shotNum = 0;
+	for (auto& shot : m_pShotParabolay)
+	{
+		if (!shot) continue;
+		if (shot->isExist())	shotNum++;
+	}
+	DrawFormatString(0, 32, GetColor(255, 255, 255), "Parabolay：%d", shotNum);
+
+	shotNum = 0;
+	for (auto& shot : m_pShotDelay)
+	{
+		if (!shot) continue;
+		if (shot->isExist())	shotNum++;
+	}
+	DrawFormatString(0, 64, GetColor(255, 255, 255), "Delay：%d", shotNum);
 }
 
-bool SceneMain::createShot(Vec2 pos)
+bool SceneMain::createShotNormal(Vec2 pos)
 {
-	for (auto& shot : m_shot)
+	for (auto& shot : m_pShotNormal)
 	{
-		if (shot.isExist()) continue;
+		if (shot)	continue;
 
-		shot.start(pos);
+		shot = new ShotNormal;
+		shot->setHandle(m_hShotGraphic);
+		shot->start(pos);
+		return true;
+	}
+	return false;
+}
+
+bool SceneMain::createShotParabolay(Vec2 pos)
+{
+	for (auto& shot : m_pShotParabolay)
+	{
+		if (shot)	continue;
+
+		shot = new ShotParabolay;
+		shot->setHandle(m_hShotGraphic);
+		shot->start(pos);
+		return true;
+	}
+	return false;
+}
+
+bool SceneMain::createShotDelay(Vec2 pos)
+{
+	for (auto& shot : m_pShotDelay)
+	{
+		if (shot)	continue;
+
+		shot = new ShotDelay;
+		shot->setHandle(m_hShotGraphic);
+		shot->start(pos);
 		return true;
 	}
 	return false;

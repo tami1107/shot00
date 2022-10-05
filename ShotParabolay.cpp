@@ -1,4 +1,5 @@
 #include "ShotParabolay.h"
+#include "game.h"
 
 namespace
 {
@@ -24,4 +25,9 @@ void ShotParabolay::update()
 	m_pos += m_vec;
 	
 	m_vec.y += kGrabity;
+
+	if (m_pos.x > Game::kScreenWidth)
+	{
+		m_isExist = false;
+	}
 }

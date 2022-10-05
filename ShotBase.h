@@ -26,6 +26,8 @@ protected:
 	int m_waitFrame;
 	// 停止したショットを再度打ち出すまでの時間
 	int m_delayTime;
+
+	int m_SinTime;
 	// 表示位置
 	Vec2	m_pos;
 	// 移動

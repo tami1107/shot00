@@ -13,6 +13,12 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="ソース ファイル\Shot">
+      <UniqueIdentifier>{7a837b5c-8b5a-4c2a-85d1-6e5bc95a8d8b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Shot">
+      <UniqueIdentifier>{7db34a35-ecbf-4dcf-b14d-49fba4ecb3d0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -28,16 +34,22 @@
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="ShotBase.cpp">
-      <Filter>ソース ファイル</Filter>
+      <Filter>ソース ファイル\Shot</Filter>
     </ClCompile>
-    <ClCompile Include="ShotNormal.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="ShotParabolay.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="ShotBound.cpp">
+      <Filter>ソース ファイル\Shot</Filter>
     </ClCompile>
     <ClCompile Include="ShotDelay.cpp">
-      <Filter>ソース ファイル</Filter>
+      <Filter>ソース ファイル\Shot</Filter>
+    </ClCompile>
+    <ClCompile Include="ShotNormal.cpp">
+      <Filter>ソース ファイル\Shot</Filter>
+    </ClCompile>
+    <ClCompile Include="ShotParabolay.cpp">
+      <Filter>ソース ファイル\Shot</Filter>
+    </ClCompile>
+    <ClCompile Include="ShotSin.cpp">
+      <Filter>ソース ファイル\Shot</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -53,17 +65,23 @@
     <ClInclude Include="player.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="ShotBase.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="ShotNormal.h">
-      <Filter>ソース ファイル</Filter>
+    <ClInclude Include="ShotSin.h">
+      <Filter>ヘッダー ファイル\Shot</Filter>
     </ClInclude>
     <ClInclude Include="ShotParabolay.h">
-      <Filter>ヘッダー ファイル</Filter>
+      <Filter>ヘッダー ファイル\Shot</Filter>
     </ClInclude>
     <ClInclude Include="ShotDelay.h">
-      <Filter>ヘッダー ファイル</Filter>
+      <Filter>ヘッダー ファイル\Shot</Filter>
+    </ClInclude>
+    <ClInclude Include="ShotBase.h">
+      <Filter>ヘッダー ファイル\Shot</Filter>
+    </ClInclude>
+    <ClInclude Include="ShotNormal.h">
+      <Filter>ヘッダー ファイル\Shot</Filter>
+    </ClInclude>
+    <ClInclude Include="ShotBound.h">
+      <Filter>ヘッダー ファイル\Shot</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

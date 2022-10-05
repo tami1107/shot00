@@ -4,7 +4,8 @@
 #include "ShotNormal.h"
 #include "ShotParabolay.h"
 #include "ShotDelay.h"
-
+#include "ShotSin.h"
+#include "ShotBound.h"
 
 class SceneMain
 {
@@ -23,7 +24,9 @@ public:
 	void draw();
 
 	// 弾の生成
-	bool createShot(Vec2 pos);
+	bool createShotNormal(Vec2 pos);
+	bool createShotParabolay(Vec2 pos);
+	bool createShotDelay(Vec2 pos);
 
 private:
 	// ショットの最大数
@@ -37,7 +40,14 @@ private:
 	// プレイヤー
 	Player m_player;
 	// ショット
-	//ShotNormal m_shot[kShotMax];
-	//ShotParabolay m_shot[kShotMax];
-	ShotDelay m_shot[kShotMax];
+//	ShotBase* m_Shot[kShotMax];
+
+	ShotNormal* m_pShotNormal[kShotMax];
+	ShotParabolay* m_pShotParabolay[kShotMax];
+	ShotDelay* m_pShotDelay[kShotMax];
+
+
+
+//	ShotSin m_shot[kShotMax];
+//	ShotBound m_shot[kShotMax];
 };
