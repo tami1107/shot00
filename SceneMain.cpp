@@ -1,5 +1,6 @@
 #include "DxLib.h"
 #include "SceneMain.h"
+
 #include "ShotNormal.h"
 #include "ShotParabolay.h"
 #include "ShotDelay.h"
@@ -31,11 +32,6 @@ void SceneMain::init()
 	m_player.setHandle(m_hPlayerGraphic);
 	m_player.init();
 	m_player.setMain(this);
-
-	for (auto& pShot : m_pShot)
-	{
-		pShot = nullptr;
-	}
 }
 
 // èIóπèàóù
@@ -44,7 +40,7 @@ void SceneMain::end()
 	DeleteGraph(m_hPlayerGraphic);
 	DeleteGraph(m_hShotGraphic);
 
-	for (auto& pShot : m_pShot)
+	for (auto& pShot : m_pShotVt)
 	{
 		if (!pShot) continue;
 		delete pShot;
@@ -56,79 +52,72 @@ void SceneMain::end()
 void SceneMain::update()
 {
 	m_player.update();
-	for (auto& pShot : m_pShot)
+
+	std::vector<ShotBase*>::iterator it = m_pShotVt.begin();
+	while (it != m_pShotVt.end())
 	{
-		if (!pShot) continue;
+		auto pShot = (*it);
+		if (!pShot)
+		{
+			it++;
+			continue;
+		}
 		pShot->update();
 		if (!pShot->isExist())
 		{
 			delete pShot;
 			pShot = nullptr;
-		}
-	}
 
+			// vestorÇÃóvëfçÌèú
+			it = m_pShotVt.erase(it);
+			continue;
+		}
+		
+		it++;
+	}
 }
 
 // ñàÉtÉåÅ[ÉÄÇÃï`âÊ
 void SceneMain::draw()
 {
 	m_player.draw();
-	for (auto& pShot : m_pShot)
+	for (auto& pShot : m_pShotVt)
 	{
 		if (!pShot) continue;
 		pShot->draw();
 	}
 
-	
 	// åªç›ë∂ç›ÇµÇƒÇ¢ÇÈíeÇÃêîÇï\é¶
-	int shotNum = 0;
-	for (auto& pShot : m_pShot)
-	{
-		if (!pShot) continue;
-		if (pShot->isExist())	shotNum++;
-	}
-	DrawFormatString(0, 0, GetColor(255, 255, 255), "íeÇÃêîÅF%d", shotNum);
+	DrawFormatString(0, 0, GetColor(255, 255, 255), "íeÇÃêîÅF%d", m_pShotVt.size());
 
 }
 
 bool SceneMain::createShotNormal(Vec2 pos)
 {
-	for (auto& shot : m_pShot)
-	{
-		if (shot)	continue;
+	ShotNormal* pShot = new ShotNormal;
+	pShot->setHandle(m_hShotGraphic);
+	pShot->start(pos);
+	m_pShotVt.push_back(pShot);
 
-		shot = new ShotNormal;
-		shot->setHandle(m_hShotGraphic);
-		shot->start(pos);
-		return true;
-	}
-	return false;
+	return true;
 }
 
 bool SceneMain::createShotParabolay(Vec2 pos)
 {
-	for (auto& shot : m_pShot)
-	{
-		if (shot)	continue;
+	ShotDelay* pShot = new ShotDelay;
+	pShot->setHandle(m_hShotGraphic);
+	pShot->start(pos);
+	m_pShotVt.push_back(pShot);
 
-		shot = new ShotParabolay;
-		shot->setHandle(m_hShotGraphic);
-		shot->start(pos);
-		return true;
-	}
-	return false;
+	return true;
 }
 
 bool SceneMain::createShotDelay(Vec2 pos)
 {
-	for (auto& shot : m_pShot)
-	{
-		if (shot)	continue;
+	ShotParabolay* pShot = new ShotParabolay;
+	pShot->setHandle(m_hShotGraphic);
+	pShot->start(pos);
+	m_pShotVt.push_back(pShot);
 
-		shot = new ShotDelay;
-		shot->setHandle(m_hShotGraphic);
-		shot->start(pos);
-		return true;
-	}
-	return false;
+	return true;
 }
